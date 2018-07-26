@@ -1,5 +1,5 @@
 {
-  "name": "@settlemint/react-ssr-boilerplate",
+  "name": "@settlemint/databrokerdao-bountyredeem-dapp",
   "version": "0.0.0-development",
   "dependencies": {
     "@0xproject/web3-wrapper": "^1.0.0",
@@ -93,7 +93,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/settlemint/react-ssr-boilerplate.git"
+    "url": "https://github.com/DataBrokerDAO/bountyredeem-dapp.git"
   },
   "scripts": {
     "postinstall": "rm -f node_modules/web3/index.d.ts",
@@ -106,7 +106,7 @@
     "test": "node scripts/test.js --env=jsdom",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "travis-deploy-once": "travis-deploy-once --pro",
+    "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
   "browserslist": {
