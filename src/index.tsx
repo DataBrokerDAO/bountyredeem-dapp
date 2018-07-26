@@ -8,11 +8,14 @@ import App from './layouts/App';
 import configureStore from './redux/configureStore';
 import * as serviceWorker from './serviceWorker';
 
-let state = {}
-if ((window as any).REDUX_STATE === "__SERVER_REDUX_STATE__" || !(window as any).REDUX_STATE){
-  state = {}
+let state = {};
+if (
+  (window as any).REDUX_STATE === '__SERVER_REDUX_STATE__' ||
+  !(window as any).REDUX_STATE
+) {
+  state = {};
 } else {
-state =(window as any).REDUX_STATE
+  state = (window as any).REDUX_STATE;
 }
 const store = configureStore(state); // If there is state on the server, store will be configured with that, otherwise with empty state.
 
