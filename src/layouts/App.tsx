@@ -13,29 +13,32 @@ interface IDispatchProps {}
 type Props = IStateProps & IDispatchProps & IOwnProps;
 
 interface IState {
-  noMetaMaskError: string | null;
-  provider: ethersProviders.Web3Provider;
+  noMetaMaskError?: string;
+  provider?: ethersProviders.Web3Provider;
 }
 
 export default class App extends React.Component<Props, IState> {
   constructor(props: Props) {
     super(props);
-    const provider = new ethersProviders.Web3Provider(
-      (window as any).web3.currentProvider,
-      {
-        chainId: 1,
-        ensAddress: '0x314159265dd8dbb310642f98f50c066173c1259b',
-        name: 'homestead'
-      }
-    );
+    let provider;
+    if (window && (window as any).web3) {
+      provider = new ethersProviders.Web3Provider(
+        (window as any).web3.currentProvider,
+        {
+          chainId: 1,
+          ensAddress: '0x314159265dd8dbb310642f98f50c066173c1259b',
+          name: 'homestead'
+        }
+      );
+    }
     this.state = {
-      noMetaMaskError: null,
+      noMetaMaskError: undefined,
       provider
     };
   }
 
   public async componentDidMount() {
-    if ((window as any).web3) {
+    if (this.state.provider && (window as any).web3) {
       const accounts = await this.state.provider.listAccounts();
       if (accounts.length === 0) {
         this.setState({
@@ -44,7 +47,7 @@ export default class App extends React.Component<Props, IState> {
         });
       } else {
         this.setState({
-          noMetaMaskError: null
+          noMetaMaskError: undefined
         });
       }
     } else {
