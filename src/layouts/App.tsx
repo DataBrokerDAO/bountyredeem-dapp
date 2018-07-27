@@ -1,8 +1,8 @@
 import { providers as ethersProviders } from 'ethers';
 import * as React from 'react';
+import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router-dom';
-import HomePage from '../components/homepage/HomePage';
-import NoMetaMaskPage from '../components/homepage/NoMetaMaskPage';
+import Loading from '../components/generic/Loading';
 
 interface IOwnProps {}
 
@@ -13,9 +13,19 @@ interface IDispatchProps {}
 type Props = IStateProps & IDispatchProps & IOwnProps;
 
 interface IState {
-  noMetaMaskError?: string;
+  noMetaMaskError?: string | boolean;
   provider?: ethersProviders.Web3Provider;
 }
+
+const NoMetaMaskPage = Loadable({
+  loader: () => import('../components/homepage/NoMetaMaskPage'),
+  loading: Loading
+});
+
+const HomePage = Loadable({
+  loader: () => import('../components/homepage/HomePage'),
+  loading: Loading
+});
 
 export default class App extends React.Component<Props, IState> {
   constructor(props: Props) {
@@ -47,7 +57,7 @@ export default class App extends React.Component<Props, IState> {
         });
       } else {
         this.setState({
-          noMetaMaskError: undefined
+          noMetaMaskError: false
         });
       }
     } else {
@@ -60,7 +70,6 @@ export default class App extends React.Component<Props, IState> {
 
   public render() {
     const { noMetaMaskError, provider } = this.state;
-
     return (
       <div className="AppWrapper">
         <div className="Header">
@@ -73,7 +82,7 @@ export default class App extends React.Component<Props, IState> {
               exact={true}
               path="/"
               render={() =>
-                noMetaMaskError || !provider ? (
+                noMetaMaskError !== false || !provider ? (
                   <NoMetaMaskPage />
                 ) : (
                   <HomePage provider={provider} />
