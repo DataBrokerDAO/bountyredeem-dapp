@@ -105,7 +105,7 @@ class HomePage extends Component<Props, IState> {
               )}
             {transaction && (
               <div>
-                <div className="progress">
+                <div className="progress" style={{ marginBottom: '2em' }}>
                   <div
                     className="progress-bar progress-bar-striped"
                     role="progressbar"
@@ -113,10 +113,10 @@ class HomePage extends Component<Props, IState> {
                   />
                 </div>
                 <p style={{ fontWeight: 700 }}>
-                  Your transaction has been sent to the chain with transaction
-                  id {transaction.hash}. You can follow along with
+                  Your transaction has been sent to the chain and you can follow
+                  along with{' '}
                   <a href="https://etherscan.io/tx/{transaction.hash}">
-                    your transaction on Etherscan
+                    the processing of this transaction on Etherscan
                   </a>.
                 </p>
               </div>
