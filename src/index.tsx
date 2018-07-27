@@ -8,6 +8,10 @@ import App from './layouts/App';
 import configureStore from './redux/configureStore';
 import * as serviceWorker from './serviceWorker';
 
+if (typeof window === 'undefined') {
+  (global as any).window = {};
+}
+
 let state = {};
 if (
   (window as any).REDUX_STATE === '__SERVER_REDUX_STATE__' ||

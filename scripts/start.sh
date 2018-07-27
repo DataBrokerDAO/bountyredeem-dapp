@@ -1,3 +1,3 @@
 #!/bin/bash -x
 
-npm run server
+NODE_ENV=production npm run server
