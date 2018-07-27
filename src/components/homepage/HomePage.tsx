@@ -115,7 +115,7 @@ class HomePage extends Component<Props, IState> {
                 <p style={{ fontWeight: 700 }}>
                   Your transaction has been sent to the chain and you can follow
                   along with{' '}
-                  <a href="https://etherscan.io/tx/{transaction.hash}">
+                  <a href={`https://etherscan.io/tx/${transaction.hash}`}>
                     the processing of this transaction on Etherscan
                   </a>.
                 </p>
