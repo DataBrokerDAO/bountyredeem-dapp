@@ -14,12 +14,12 @@ if (typeof window === 'undefined') {
 
 let state = {};
 if (
-  (window as any).REDUX_STATE === '__SERVER_REDUX_STATE__' ||
-  !(window as any).REDUX_STATE
+  ((global as any).window as any).REDUX_STATE === '__SERVER_REDUX_STATE__' ||
+  !((global as any).window as any).REDUX_STATE
 ) {
   state = {};
 } else {
-  state = (window as any).REDUX_STATE;
+  state = ((global as any).window as any).REDUX_STATE;
 }
 const store = configureStore(state); // If there is state on the server, store will be configured with that, otherwise with empty state.
 

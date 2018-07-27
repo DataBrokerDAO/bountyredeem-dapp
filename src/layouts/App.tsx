@@ -21,7 +21,7 @@ export default class App extends React.Component<Props, IState> {
   constructor(props: Props) {
     super(props);
     let provider;
-    if (window && (window as any).web3) {
+    if ((global as any).window && ((global as any).window as any).web3) {
       provider = new ethersProviders.Web3Provider(
         (window as any).web3.currentProvider,
         {
@@ -38,7 +38,7 @@ export default class App extends React.Component<Props, IState> {
   }
 
   public async componentDidMount() {
-    if (this.state.provider && (window as any).web3) {
+    if (this.state.provider && ((global as any).window as any).web3) {
       const accounts = await this.state.provider.listAccounts();
       if (accounts.length === 0) {
         this.setState({
