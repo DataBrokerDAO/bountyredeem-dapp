@@ -95,12 +95,19 @@ class HomePage extends Component<Props, IState> {
               )}
             {!transaction &&
               !buttonActive && (
-                <div className="progress">
-                  <div
-                    className="progress-bar progress-bar-striped progress-bar-animated"
-                    role="progressbar"
-                    style={{ width: '75%' }}
-                  />
+                <div>
+                  <div className="progress" style={{ marginBottom: '2em' }}>
+                    <div
+                      className="progress-bar progress-bar-striped progress-bar-animated"
+                      role="progressbar"
+                      style={{ width: '75%' }}
+                    />
+                  </div>
+                  <p style={{ fontWeight: 700 }}>
+                    Your transaction has been sent to the chain and is waiting
+                    to be accepted in the transaction pool. This might take a
+                    few minutes. This page will update when completed.
+                  </p>
                 </div>
               )}
             {transaction && (
